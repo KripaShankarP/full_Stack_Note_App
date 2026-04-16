@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useNavigate} from "react";
 
 function Register() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
