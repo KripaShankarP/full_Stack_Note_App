@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const mongo_Connection = "mongodb+srv://kripashankerpandey1503_db_user:Pandey1234@cluster0.ona8dug.mongodb.net/?appName=Cluster0"
+const mongo_Connection = "mongodb+srv://kripashankerpandey1503_db_user:Pandey1234@cluster0.ona8dug.mongodb.net/myDbs"
 
 const connectDb = async()=>{
   try {
