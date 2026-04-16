@@ -13,10 +13,11 @@ connectDb()
 
 app.use(express.json())
 app.use(cookieParser())
-
+const allowedOrigin =[
+    "http://localhost:5173","https://full-stack-note-app-2.onrender.com"
+]
 app.use(cors({
-    origin: "http://localhost:5173",
-            "https://full-stack-note-app-2.onrender.com", 
+    origin: allowedOrigin,
     credentials: true
 }))
 
