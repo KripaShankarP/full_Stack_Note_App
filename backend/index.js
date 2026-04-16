@@ -23,21 +23,35 @@ app.use(cors({
 
 // ================= REGISTER =================
 app.post('/api/register', async (req, res) => {
-    let { username, age, email, password } = req.body
+  try {
+    let { username, age, email, password } = req.body;
 
-    let user = await usermodel.findOne({ email })
-    if (user) return res.json({ message: "User exists" })
+    let user = await usermodel.findOne({ email });
+    if (user) {
+      return res.status(409).json({ message: "User exists" });
+    }
 
-    let hash = await bcrypt.hash(password, 10)
+    let hash = await bcrypt.hash(password, 10);
 
     let newUser = await usermodel.create({
-        username, age, email, password: hash
-    })
+      username,
+      age,
+      email,
+      password: hash
+    });
 
-    let token = jwt.sign({ email, userid: newUser._id }, "kripa")
+    let token = jwt.sign(
+      { email, userid: newUser._id },
+      "kripa"
+    );
 
-    res.json({ user: newUser })
-})
+    res.status(201).json({ user: newUser });
+
+  } catch (error) {
+    console.log("REGISTER ERROR:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // ================= LOGIN =================
 app.post('/api/login', async (req, res) => {
