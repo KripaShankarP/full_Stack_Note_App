@@ -38,14 +38,14 @@ function Notes() {
    
 
   const del = async (id) => {
-    await fetch(`http://localhost:3000/api/notes/${id}`, {
+    await fetch(`https://full-stack-note-app-3kj4.onrender.com/api/notes/${id}`, {
       method: "DELETE",
       credentials: "include"
     });
     load();
   };
   const logout = async () => {
-  await fetch("http://localhost:3000/api/logout", {
+  await fetch("https://full-stack-note-app-3kj4.onrender.com/api/logout", {
     credentials: "include"
   });
 
