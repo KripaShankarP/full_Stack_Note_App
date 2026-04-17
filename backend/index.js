@@ -14,16 +14,15 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
-});
-app.use(express.json())
-app.use(cookieParser())
 
 app.use(cors({
     origin: "https://full-stack-note-app-2.onrender.com",
     credentials: true
 }))
+app.use(express.json())
+app.use(cookieParser())
+
+
 
 // ================= REGISTER =================
 app.post('/api/register', async (req, res) => {
@@ -131,5 +130,8 @@ function isLoggedIn(req, res, next) {
         return res.status(401).json({ message: "Invalid token" });
     }
 }
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+});
 
 app.listen(3000, () => console.log("Server running"))
