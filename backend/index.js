@@ -23,7 +23,7 @@ const allowedOrigin =[
     "http://localhost:5173","https://full-stack-note-app-2.onrender.com"
 ]
 app.use(cors({
-    origin: "https://full-stack-note-app-woad.vercel.app",
+    origin: allowedOrigin,
     credentials: true
 }))
 
