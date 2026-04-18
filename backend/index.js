@@ -15,7 +15,7 @@ connectDb()
 app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use(cors({
-  origin: "https://full-stack-note-app-csen.vercel.app/",
+  origin: "https://full-stack-note-app-csen.vercel.app",
   credentials: true
 }))
 
