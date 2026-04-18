@@ -38,14 +38,14 @@ function Notes() {
    
 
   const del = async (id) => {
-    await fetch(`https://full-stack-note-app-3kj4.onrender.com/api/notes/${id}`, {
+    await fetch(`http://localhost:3000/api/notes/${id}`, {
       method: "DELETE",
       credentials: "include"
     });
     load();
   };
   const logout = async () => {
-  await fetch("https://full-stack-note-app-3kj4.onrender.com/api/logout", {
+  await fetch("http://localhost:3000/api/auth/logout", {
     credentials: "include"
   });
 
@@ -77,8 +77,8 @@ function Notes() {
       <button onClick={add} className="flex bg-amber-500 w-50 rounded-4xl pl-18 h-10 pt-2 ml-10 mt-2">Add Note</button>
      <div className="flex flex-wrap">
       {user?.posts.map(n => (
-         <div key={n._id} className="w-1/6 h-50 bg-zinc-700 flex flex-col justify-between p-3 m-3 rounded-2xl mt-5">
-          <p>{n.content}</p>
+         <div key={n._id} className="w-1/7 h-50 bg-zinc-700 flex flex-col justify-between p-3 m-3 rounded-2xl mt-5">
+          <p className="text-2xl">{n.content}</p>
          <div className="flex justify-between">
            <button onClick={() => del(n._id) } className="text-red-500">Delete</button>
           <button onClick={() => window.location.href=`/edit/${n._id}`}>Edit</button>

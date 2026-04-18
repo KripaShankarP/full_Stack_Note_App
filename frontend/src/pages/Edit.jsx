@@ -6,7 +6,7 @@ function EditNote() {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    fetch("https://full-stack-note-app-3kj4.onrender.com/api/notes", { credentials: "include" })
+    fetch("http://localhost:3000/api/notes", { credentials: "include" })
       .then(res => res.json())
       .then(data => {
         let note = data.user.posts.find(n => n._id === id);
@@ -15,7 +15,7 @@ function EditNote() {
   }, []);
 
   const save = async () => {
-    await fetch(`https://full-stack-note-app-3kj4.onrender.com/api/notes/${id}`, {
+    await fetch(`http://localhost:3000/api/notes/${id}`, {
       method: "PUT",
       headers: {"Content-Type":"application/json"},
       credentials: "include",
