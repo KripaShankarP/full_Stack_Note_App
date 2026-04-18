@@ -24,9 +24,7 @@ app.use(cors({
 app.use('/api/auth', require('./routes/authRoutes'))
 app.use('/api/notes', require('./routes/noteRoute'))
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist/index.html"));
-})
+
 
 
 
