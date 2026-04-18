@@ -1,4 +1,5 @@
 import { useState ,useNavigate} from "react";
+const api = import.meta.env.VITE_API_URL
 
 function Register() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -8,7 +9,7 @@ function Register() {
       alert("All fields are required...");
       return;
     }
-    let res = await fetch("http://localhost:3000/api/auth/register", {
+    let res = await fetch(`${api}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

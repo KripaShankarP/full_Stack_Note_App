@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+const api = import.meta.env.VITE_API_URL
 
 function Notes() {
   const [user, setUser] = useState(null);
@@ -6,7 +7,7 @@ function Notes() {
  
 
   const load = () => {
-    fetch("http://localhost:3000/api/notes", { credentials: "include" })
+    fetch(`${api}/api/notes`, { credentials: "include" })
       .then(res => res.json())
       .then(data => setUser(data.user));
   };
@@ -18,7 +19,7 @@ function Notes() {
       alert("Empty notes not allowed");
       return;
     }
-    let res = await fetch("http://localhost:3000/api/notes", {
+    let res = await fetch(`${api}/api/notes`, {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       credentials: "include",
@@ -38,14 +39,14 @@ function Notes() {
    
 
   const del = async (id) => {
-    await fetch(`http://localhost:3000/api/notes/${id}`, {
+    await fetch(`${api}/api/notes/${id}`, {
       method: "DELETE",
       credentials: "include"
     });
     load();
   };
   const logout = async () => {
-  await fetch("http://localhost:3000/api/auth/logout", {
+  await fetch(`${api}/api/auth/logout`, {
     credentials: "include"
   });
 

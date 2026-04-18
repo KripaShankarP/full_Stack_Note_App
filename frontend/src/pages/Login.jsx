@@ -1,11 +1,12 @@
 import { useState } from "react";
+const api = import.meta.env.VITE_API_URL
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const login = async () => {
-    let res = await fetch("http://localhost:3000/api/auth/login", {
+    let res = await fetch(`${api}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -31,7 +32,7 @@ function Login() {
       <div className="">
         <h1 className="text-3xl text-white ml-20 mb-5" >User Login Form</h1>
         <input onChange={e => setEmail(e.target.value)} placeholder="email"  className="w-full bg-zinc-700 rounded-b-md h-10 flex  m-2 p-2 text-white"/>
-      <input onChange={e => setPassword(e.target.value)} placeholder="password" className="w-full bg-zinc-700 rounded-b-md h-10 flex  m-2 p-2 text-white" />
+      <input onChange={e => setPassword(e.target.value)} placeholder="password" type="password" className="w-full bg-zinc-700 rounded-b-md h-10 flex  m-2 p-2 text-white" />
       <button onClick={login} className="bg-blue-700 p-1.5 text-white  rounded-3xl w-full ">Login</button>
       </div>
     </div>

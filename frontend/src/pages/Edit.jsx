@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+const api = import.meta.env.VITE_API_URL
 
 function EditNote() {
   const { id } = useParams();
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/notes", { credentials: "include" })
+    fetch(`${api}/api/notes`, { credentials: "include" })
       .then(res => res.json())
       .then(data => {
         let note = data.user.posts.find(n => n._id === id);
@@ -15,7 +16,7 @@ function EditNote() {
   }, []);
 
   const save = async () => {
-    await fetch(`http://localhost:3000/api/notes/${id}`, {
+    await fetch(`${api}/api/notes/${id}`, {
       method: "PUT",
       headers: {"Content-Type":"application/json"},
       credentials: "include",
