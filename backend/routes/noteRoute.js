@@ -15,4 +15,5 @@ router.post('/', isLoggedIn, createNote)
 router.put('/:id', isLoggedIn, updateNote)
 router.delete('/:id', isLoggedIn, deleteNote)
 
+
 module.exports = router

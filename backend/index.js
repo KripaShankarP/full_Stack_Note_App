@@ -12,8 +12,10 @@ app.use(cookieParser())
 
 connectDb()
 
+app.use(express.static(path.join(__dirname, "client/dist")));
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://frontend-siqx.onrender.com",
   credentials: true
 }))
 
@@ -21,6 +23,11 @@ app.use(cors({
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'))
 app.use('/api/notes', require('./routes/noteRoute'))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist/index.html"));
+})
+
 
 
  const PORT = process.env.PORT || 3000
